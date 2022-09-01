@@ -1,7 +1,6 @@
 import * as THREE from 'three'
 import Experience from '../Experience.js'
 import gsap from 'gsap'
-import ZoomInOnLoad from './ZoomInOnLoad.js'
 
 export default class Box {
 	constructor() {
@@ -11,21 +10,20 @@ export default class Box {
 		this.camera = this.experience.camera.controls
 
 		if (this.debug.active) {
-			this.debugFolder = this.debug.ui.addFolder('Box Template')
+			this.debugFolder = this.debug.ui.addFolder('Box Template').close()
 			this.debugObject = {
 				color: '#ffffff',
 			}
 		}
 		console.log('box instantiated')
 
-		this.material = new THREE.MeshStandardMaterial({ color: 'red' })
+		this.material = new THREE.MeshBasicMaterial({ color: 'red', wireframe: true })
 		this.geometry = new THREE.BoxGeometry(2, 1, 1)
 
 		this.setBox()
 		this.setDebug()
 
 		// Animations
-		// this.zoomInOnLoad = new ZoomInOnLoad()
 
 		setTimeout(() => {
 			gsap.to(this.box.rotation, {
