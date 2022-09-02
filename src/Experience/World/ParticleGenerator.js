@@ -13,11 +13,11 @@ export default class ParticleGenerator {
 		this.debug = this.experience.debug
 
 		if (this.debug.active) {
-			this.debugFolder = this.debug.ui.addFolder('Particles')
+			this.debugFolder = this.debug.ui.addFolder('Particles').close()
 		}
 
 		this.particleParams = {
-			color: '#fa00a3',
+			color: '#ffffff',
 			size: 0.05,
 			radius: 0.3,
 		}
@@ -51,11 +51,12 @@ export default class ParticleGenerator {
 		for (let i = 0; i < this.particleParams.number; i++) {
 			this.i3 = i * 3
 
-			this.positions[this.i3 + 0] = (Math.random() - 0.5) * 20
-			this.positions[this.i3 + 1] = (Math.random() - 0.5) * 20
-			this.positions[this.i3 + 2] = (-Math.random() - 0.5) * 100 + 50
+			this.positions[this.i3 + 0] = (Math.random() - 0.5) * 300
+			this.positions[this.i3 + 1] = (Math.random() - 0.5) * 300
+			this.positions[this.i3 + 2] = (-Math.random() - 0.5) * 8000 + 4000
 
-			this.scales[i] = Math.random() * 5
+			this.scales[i] = Math.random() * 2
+
 			this.colors[this.i3] = this.color.r
 			this.colors[this.i3 + 1] = this.color.g
 			this.colors[this.i3 + 2] = this.color.b
@@ -75,23 +76,16 @@ export default class ParticleGenerator {
 		)
 
 		// Create shader material for particles
-		// this.particleMaterial = new THREE.ShaderMaterial({
-		// 	vertexColors: true,
-		// 	blending: THREE.AdditiveBlending,
-		// 	vertexShader: VertexShader,
-		// 	fragmentShader: FragmentShader,
-		// 	depthWrite: false,
-		// 	uniforms: {
-		// 		uTime: { value: 0 },
-		// 		uSize: { value: 3 * this.renderer.getPixelRatio() },
-		// 	},
-		// })
-
-		this.particleMaterial = new THREE.PointsMaterial({
-			size: this.particleParams.size,
-			sizeAttenuation: true,
-			depthWrite: false,
+		this.particleMaterial = new THREE.ShaderMaterial({
+			vertexColors: true,
 			blending: THREE.AdditiveBlending,
+			depthWrite: false,
+			vertexShader: VertexShader,
+			fragmentShader: FragmentShader,
+			uniforms: {
+				uTime: { value: 0 },
+				uSize: { value: 3 * this.renderer.getPixelRatio() },
+			},
 		})
 
 		this.particlePoints = new THREE.Points(
@@ -115,8 +109,8 @@ export default class ParticleGenerator {
 
 	update() {
 		// this.particleMaterial.uniforms.uTime.value = this.time.elapsed / 10000
-		// this.particleMaterial.uniforms.uSize.value = Math.abs(
-		// 	Math.sin(this.time.elapsed / 10000) * 30
-		// )
+		this.particleMaterial.uniforms.uSize.value = Math.abs(
+			(Math.sin(this.time.elapsed / 2000) + 1.1) * 2
+		)
 	}
 }

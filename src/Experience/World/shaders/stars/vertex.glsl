@@ -1,32 +1,25 @@
- uniform float uSize;
- uniform float uTime;
- 
- attribute float aScale;
- 
- varying vec3 vColor;
+			// uniform vec2 uFrequency;
+			// uniform float uTime;
+			uniform float uSize;
+			
+			attribute float aScale;
 
- void main() 
-  {  
+			varying vec3 vColor;
+	
 
-    // position 
-    vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+			void main()
+			{
+				
+				vec4 modelPosition = modelMatrix * vec4(position, 1.0);
+				vec4 viewPosition = viewMatrix * modelPosition;
+				vec4 projectedPosition = projectionMatrix * viewPosition;
+				gl_Position = projectedPosition;
 
-    //   modelPosition.x += utime;
-     float angle = atan(modelPosition.x, modelPosition.z);
-     float distanceToCenter = length(modelPosition.xz);
-     float angleOffset = (1.0/distanceToCenter) * -uTime * 0.2;
-    //  float angleOffset = uTime * 0.3;
-     angle *= angleOffset;
-    //  modelPosition.x = cos(angle) * distanceToCenter * aScale;
-     modelPosition.z = cos(angle) * distanceToCenter ;
-            
-      vec4 viewPosition = viewMatrix * modelPosition;
-      vec4 projectedPosition = projectionMatrix * modelPosition;
-      gl_Position = projectedPosition;
+				/*
+				Size
+				*/
+				gl_PointSize = aScale + uSize;
 
-      
-      gl_PointSize = uSize + aScale;
-  
-      // vColor
-      vColor = color;
-  }
+				// Color 
+				vColor = color;	
+			} 

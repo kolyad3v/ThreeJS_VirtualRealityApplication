@@ -3,6 +3,7 @@ import Environment from './Environment.js'
 import Box from './Box'
 import ParticleGenerator from './ParticleGenerator.js'
 import RandomShapeGenerator from './RandomShapeGenerator.js'
+import Text from './Text.js'
 
 export default class World {
 	constructor() {
@@ -17,17 +18,24 @@ export default class World {
 			this.environment = new Environment()
 		})
 		this.particles = new ParticleGenerator()
-		this.torusKnots = new RandomShapeGenerator('TorusKnot', 20)
-		this.dodecahedrons = new RandomShapeGenerator('Dodecahedron', 20)
-		this.torus = new RandomShapeGenerator('Torus', 20)
-		this.ethShape = new RandomShapeGenerator('Octahedron', 20)
-		this.triangle = new RandomShapeGenerator('Tetrahedron', 20)
+		this.torusKnots = new RandomShapeGenerator('TorusKnot', 1)
+		this.dodecahedrons = new RandomShapeGenerator('Dodecahedron', 1)
+		this.torus = new RandomShapeGenerator('Torus', 1)
+		this.ethShape = new RandomShapeGenerator('Octahedron', 1)
+		this.triangle = new RandomShapeGenerator('Tetrahedron', 1, 0.5, 0.5, 0.5)
+		this.nick = new Text('Nick', { x: -2, y: 0, z: -4000 }, 0)
+		this.sam = new Text('Sam', { x: 2, y: 0, z: -4000 }, 0)
 	}
 
 	update() {
-		if (this.fox) this.fox.update()
-		if (this.particles) {
-			this.particles.update()
+		if (this.particles) this.particles.update()
+
+		if (this.torus) {
+			this.torus.updateY()
+		}
+		if (this.triangle) {
+			this.triangle.updateY()
+			this.triangle.update()
 		}
 	}
 }

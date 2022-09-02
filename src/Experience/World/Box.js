@@ -1,3 +1,4 @@
+import { CustomEase } from 'gsap/src/all'
 import * as THREE from 'three'
 import Experience from '../Experience.js'
 import gsap from 'gsap'
@@ -40,15 +41,15 @@ export default class Box {
 			})
 			setTimeout(() => {
 				gsap.to(this.camera.target, {
-					duration: 10,
-					ease: 'power2.inOut',
-					z: -65,
+					duration: 20,
+					ease: 'circ.inOut',
+					z: -4000,
 				})
 
 				gsap.to(this.camera.object.position, {
-					duration: 10,
-					ease: 'power2.inOut',
-					z: -55,
+					duration: 20,
+					ease: 'circ.inOut',
+					z: -3990,
 				})
 			}, 5000)
 		}, 3000)
