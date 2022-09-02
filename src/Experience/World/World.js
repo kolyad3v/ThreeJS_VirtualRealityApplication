@@ -9,7 +9,7 @@ export default class World {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
-
+		this.count = 0
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
@@ -17,7 +17,11 @@ export default class World {
 			this.environment = new Environment()
 		})
 		this.particles = new ParticleGenerator()
-		this.randomShape = new RandomShapeGenerator()
+		this.torusKnots = new RandomShapeGenerator('TorusKnot', 20)
+		this.dodecahedrons = new RandomShapeGenerator('Dodecahedron', 20)
+		this.torus = new RandomShapeGenerator('Torus', 20)
+		this.ethShape = new RandomShapeGenerator('Octahedron', 20)
+		this.triangle = new RandomShapeGenerator('Tetrahedron', 20)
 	}
 
 	update() {

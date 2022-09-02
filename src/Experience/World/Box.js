@@ -26,18 +26,31 @@ export default class Box {
 		// Animations
 
 		setTimeout(() => {
-			gsap.to(this.box.rotation, {
-				duration: 2,
-				ease: 'power2.inOut',
-				x: -0.4,
-			})
+			// gsap.to(this.box.rotation, {
+			// 	duration: 2,
+			// 	ease: 'power2.inOut',
+			// 	x: -0.4,
+			// })
 			gsap.to(this.camera.object.position, {
-				duration: 2.5,
+				duration: 4,
 				ease: 'power2.inOut',
-				x: -0.06394560979259792,
-				y: 0.7088038609962513,
-				z: 1.7708554902950742,
+				x: 0.015354003026610627,
+				y: 0.02299479124845972,
+				z: 0.44695427287115613,
 			})
+			setTimeout(() => {
+				gsap.to(this.camera.target, {
+					duration: 10,
+					ease: 'power2.inOut',
+					z: -65,
+				})
+
+				gsap.to(this.camera.object.position, {
+					duration: 10,
+					ease: 'power2.inOut',
+					z: -55,
+				})
+			}, 5000)
 		}, 3000)
 	}
 
@@ -66,11 +79,45 @@ export default class Box {
 				.max(10)
 				.step(0.1)
 				.name('z')
+			this.debugFolder
+				.add(this.box.position, 'x')
+				.min(-10)
+				.max(10)
+				.step(0.1)
+				.name('x')
+			this.debugFolder
+				.add(this.box.position, 'y')
+				.min(-10)
+				.max(10)
+				.step(0.1)
+				.name('y')
+			this.debugFolder
+				.add(this.box.position, 'z')
+				.min(-10)
+				.max(10)
+				.step(0.1)
+				.name('z')
 		}
 	}
 }
 
 // Final position of camera on zoom
-// x: -0.06394560979259792
-// y: 0.7088038609962513
-// z: 1.7708554902950742
+// x
+// :
+// 0.015354003026610627
+// y
+// :
+// 0.02299479124845972
+// z
+// :
+// 0.44695427287115613
+// final position we want the camera to look at and end up at.
+// x
+// :
+// -4.640656446816674
+// y
+// :
+// -8.120599976421829
+// z
+// :
+// -62.66517693443177

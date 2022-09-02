@@ -27,16 +27,17 @@ export default class Camera {
 			100
 		)
 		this.instance.position.set(6, 4, 8)
-		this.instance.zoom = 5
+
 		this.scene.add(this.instance)
 	}
 
 	setControls() {
 		this.controls = new OrbitControls(this.instance, this.canvas)
 		this.controls.enableDamping = true
+		this.controls.dampingFactor = 0.005
 
-		this.controls.maxPolarAngle = 1.1902899496825317
-		this.controls.minPolarAngle = 1.1902899496825317
+		// this.controls.maxPolarAngle = 1.1902899496825317
+		// this.controls.minPolarAngle = 1.1902899496825317
 	}
 
 	setDebug() {
