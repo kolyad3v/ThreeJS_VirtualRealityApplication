@@ -1,9 +1,14 @@
 import Experience from '../Experience.js'
 import Environment from './Environment.js'
-import Box from './Box'
 import ParticleGenerator from './ParticleGenerator.js'
 import RandomShapeGenerator from './RandomShapeGenerator.js'
 import Text from './Text.js'
+import Model from './models/Model.js'
+import Raycaster from '../Utils/Raycaster.js'
+import DoubleClick from './models/DoubleClick.js'
+import ClickDrag from './models/ClickDrag.js'
+import Nick from './models/Nick.js'
+import Sam from './models/Sam.js'
 
 export default class World {
 	constructor() {
@@ -14,28 +19,40 @@ export default class World {
 		// Wait for resources
 		this.resources.on('ready', () => {
 			// Setup
-			this.box = new Box()
+			// this.box = new Box()
 			this.environment = new Environment()
+			this.vrGoggles = new Model()
+			this.raycaster = new Raycaster()
+			this.clickDrag = new ClickDrag()
+			this.doubleClick = new DoubleClick()
 		})
-		this.particles = new ParticleGenerator()
-		this.torusKnots = new RandomShapeGenerator('TorusKnot', 1)
-		this.dodecahedrons = new RandomShapeGenerator('Dodecahedron', 1)
-		this.torus = new RandomShapeGenerator('Torus', 1)
-		this.ethShape = new RandomShapeGenerator('Octahedron', 1)
-		this.triangle = new RandomShapeGenerator('Tetrahedron', 1, 0.5, 0.5, 0.5)
-		this.nick = new Text('Nick', { x: -2, y: 0, z: -4000 }, 0)
-		this.sam = new Text('Sam', { x: 2, y: 0, z: -4000 }, 0)
+		this.generateContent = () => {
+			this.particles = new ParticleGenerator()
+			this.torusKnots = new RandomShapeGenerator('TorusKnot', 1)
+			this.dodecahedrons = new RandomShapeGenerator('Dodecahedron', 1)
+			this.torus = new RandomShapeGenerator('Torus', 1)
+			this.ethShape = new RandomShapeGenerator('Octahedron', 1)
+			this.triangle = new RandomShapeGenerator('Tetrahedron', 1, 0.5, 0.5, 0.5)
+			this.nick = new Nick()
+			this.sam = new Sam()
+			// this.nick = new Text('Nick', { x: -2, y: 0, z: -4000 }, 0)
+			// this.sam = new Text('Sam', { x: 2, y: 0, z: -4000 }, 0)
+		}
 	}
 
 	update() {
 		if (this.particles) this.particles.update()
 
-		if (this.torus) {
-			this.torus.updateY()
-		}
+		this.torus && this.torus.updateY()
+		this.torusKnots && this.torusKnots.updateZ()
+
 		if (this.triangle) {
 			this.triangle.updateY()
 			this.triangle.update()
+		}
+
+		if (this.raycaster) {
+			this.raycaster.update()
 		}
 	}
 }

@@ -26,33 +26,33 @@ export default class Box {
 
 		// Animations
 
-		setTimeout(() => {
-			// gsap.to(this.box.rotation, {
-			// 	duration: 2,
-			// 	ease: 'power2.inOut',
-			// 	x: -0.4,
-			// })
-			gsap.to(this.camera.object.position, {
-				duration: 4,
-				ease: 'power2.inOut',
-				x: 0.015354003026610627,
-				y: 0.02299479124845972,
-				z: 0.44695427287115613,
-			})
-			setTimeout(() => {
-				gsap.to(this.camera.target, {
-					duration: 20,
-					ease: 'circ.inOut',
-					z: -4000,
-				})
+		// setTimeout(() => {
+		// 	// gsap.to(this.box.rotation, {
+		// 	// 	duration: 2,
+		// 	// 	ease: 'power2.inOut',
+		// 	// 	x: -0.4,
+		// 	// })
+		// 	gsap.to(this.camera.object.position, {
+		// 		duration: 4,
+		// 		ease: 'power2.inOut',
+		// 		x: 0.015354003026610627,
+		// 		y: 0.02299479124845972,
+		// 		z: 0.44695427287115613,
+		// 	})
+		// 	setTimeout(() => {
+		// 		gsap.to(this.camera.target, {
+		// 			duration: 20,
+		// 			ease: 'circ.inOut',
+		// 			z: -4000,
+		// 		})
 
-				gsap.to(this.camera.object.position, {
-					duration: 20,
-					ease: 'circ.inOut',
-					z: -3990,
-				})
-			}, 5000)
-		}, 3000)
+		// 		gsap.to(this.camera.object.position, {
+		// 			duration: 20,
+		// 			ease: 'circ.inOut',
+		// 			z: -3990,
+		// 		})
+		// 	}, 5000)
+		// }, 3000)
 	}
 
 	setBox() {

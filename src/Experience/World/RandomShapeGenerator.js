@@ -37,6 +37,7 @@ export default class RandomShapeGenerator {
 		switch (this.name) {
 			case 'TorusKnot':
 				this.material = new MeshNormalMaterial()
+				this.material.wireframe = true
 				this.geometry = new TorusKnotGeometry(5, 1, 70, 20)
 				// this.geometry.scale(0.5, 0.5, 0.5)
 				this.zPostion = -3000
@@ -64,17 +65,17 @@ export default class RandomShapeGenerator {
 				this.geometry.scale(0.5, 0.5, 0.5)
 				this.xPostion = -2
 				this.yPostion = 1
-				this.zPostion = -3000
+				this.zPostion = -3500
 
 				for (let i = 0; i < numberOfShapes; i++) {
 					this.setShapes()
 				}
 				break
 			case 'Octahedron':
-				this.material = new MeshNormalMaterial({})
+				this.material = new MeshNormalMaterial()
 				this.geometry = new OctahedronGeometry(1, 0)
 				this.geometry.scale(0.5, 0.5, 0.5)
-				this.zPostion = -2000
+				this.zPostion = -2500
 
 				for (let i = 0; i < numberOfShapes; i++) {
 					this.setShapes()
