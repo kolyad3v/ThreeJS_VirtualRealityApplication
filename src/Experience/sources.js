@@ -41,4 +41,11 @@ export default [
 		type: 'gltfModel',
 		path: 'models/sam.glb',
 	},
+
+	// Sam Projects
+	{
+		name: 'tiles',
+		type: 'gltfModel',
+		path: 'models/tiles/tiles.glb',
+	},
 ]

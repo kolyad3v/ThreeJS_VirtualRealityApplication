@@ -25,7 +25,7 @@ export default class LoadingScreen {
 					gsap.to(this.overlayMat.uniforms.uAlpha, {
 						duration: 3,
 						value: 0,
-						delay: 1,
+						delay: 0,
 					})
 				}, 500)
 			},
@@ -34,7 +34,7 @@ export default class LoadingScreen {
 				// calculate progress and transform loading loadingBarElement
 				const progressRatio = itemsLoaded / itemsTotal
 				this.loadingBarElement.style.transform = `scaleX(${progressRatio})`
-				console.log(progressRatio)
+				// console.log(progressRatio)
 			}
 		)
 	}
