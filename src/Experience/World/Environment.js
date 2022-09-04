@@ -13,7 +13,7 @@ export default class Environment {
 			this.debugFolder = this.debug.ui.addFolder('environment').close()
 		}
 
-		// this.setSunLight()
+		this.setSunLight()
 		// this.setAmbientLight()
 		this.setEnvironmentMap()
 	}
@@ -30,50 +30,51 @@ export default class Environment {
 	// 	}
 	// }
 
-	// setSunLight() {
-	// 	this.sunLight = new THREE.DirectionalLight('#ffffff', 4)
-	// 	this.sunLight.castShadow = true
-	// 	this.sunLight.shadow.camera.far = 15
-	// 	this.sunLight.shadow.mapSize.set(1024, 1024)
-	// 	this.sunLight.shadow.normalBias = 0.05
-	// 	this.sunLight.position.set(3.5, 2, -1.25)
-	// 	this.scene.add(this.sunLight)
+	setSunLight() {
+		this.sunLight = new THREE.DirectionalLight('#ffffff', 4)
+		this.sunLight.castShadow = true
+		this.sunLight.shadow.camera.far = 15
+		this.sunLight.shadow.mapSize.set(1024, 1024)
+		this.sunLight.shadow.normalBias = 0.05
+		this.sunLight.position.set(3.5, 2, 0.943)
 
-	// 	// Debug
-	// 	if (this.debug.active) {
-	// 		this.debugFolder
-	// 			.add(this.sunLight, 'intensity')
-	// 			.name('sunLightIntensity')
-	// 			.min(0)
-	// 			.max(10)
-	// 			.step(0.001)
+		this.scene.add(this.sunLight)
 
-	// 		this.debugFolder
-	// 			.add(this.sunLight.position, 'x')
-	// 			.name('sunLightX')
-	// 			.min(-5)
-	// 			.max(5)
-	// 			.step(0.001)
+		// Debug
+		if (this.debug.active) {
+			this.debugFolder
+				.add(this.sunLight, 'intensity')
+				.name('sunLightIntensity')
+				.min(0)
+				.max(10)
+				.step(0.001)
 
-	// 		this.debugFolder
-	// 			.add(this.sunLight.position, 'y')
-	// 			.name('sunLightY')
-	// 			.min(-5)
-	// 			.max(5)
-	// 			.step(0.001)
+			this.debugFolder
+				.add(this.sunLight.position, 'x')
+				.name('sunLightX')
+				.min(-5)
+				.max(5)
+				.step(0.001)
 
-	// 		this.debugFolder
-	// 			.add(this.sunLight.position, 'z')
-	// 			.name('sunLightZ')
-	// 			.min(-5)
-	// 			.max(5)
-	// 			.step(0.001)
-	// 	}
-	// }
+			this.debugFolder
+				.add(this.sunLight.position, 'y')
+				.name('sunLightY')
+				.min(-5)
+				.max(5)
+				.step(0.001)
+
+			this.debugFolder
+				.add(this.sunLight.position, 'z')
+				.name('sunLightZ')
+				.min(-5)
+				.max(5)
+				.step(0.001)
+		}
+	}
 
 	setEnvironmentMap() {
 		this.environmentMap = {}
-		this.environmentMap.intensity = 3
+		this.environmentMap.intensity = 5
 		this.environmentMap.texture = this.resources.items.environmentMapTexture
 		this.environmentMap.texture.encoding = THREE.sRGBEncoding
 

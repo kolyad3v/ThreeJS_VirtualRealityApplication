@@ -24,7 +24,7 @@ export default class Model {
 
 		this.model.rotation.y = 7
 		this.model.children.scale = new Vector3(0.5, 0.5, 0.5)
-		this.model.position.set(1, 0, -4000)
+		this.model.position.set(-6.5, 5.3, -4000)
 
 		this.scene.add(this.model)
 	}

@@ -53,7 +53,7 @@ export default class ParticleGenerator {
 
 			this.positions[this.i3 + 0] = (Math.random() - 0.5) * 300
 			this.positions[this.i3 + 1] = (Math.random() - 0.5) * 300
-			this.positions[this.i3 + 2] = (-Math.random() - 0.5) * 8000 + 4000
+			this.positions[this.i3 + 2] = (-Math.random() - 0.5) * 5000 + 4000
 
 			this.scales[i] = Math.random() * 2
 
@@ -108,9 +108,9 @@ export default class ParticleGenerator {
 	}
 
 	update() {
-		// this.particleMaterial.uniforms.uTime.value = this.time.elapsed / 10000
-		this.particleMaterial.uniforms.uSize.value = Math.abs(
-			(Math.sin(this.time.elapsed / 2000) + 1.1) * 2
-		)
+		// // this.particleMaterial.uniforms.uTime.value = this.time.elapsed / 10000
+		// this.particleMaterial.uniforms.uSize.value = Math.abs(
+		// 	(Math.sin(this.time.elapsed / 2000) + 1.1) * 2
+		// )
 	}
 }

@@ -50,7 +50,8 @@ export default class RandomShapeGenerator {
 
 			// TORUS DOUGHNUT HERE ---->>
 			case 'Torus':
-				this.material = new MeshNormalMaterial({})
+				this.material = new MeshNormalMaterial()
+				this.material.wireframe = true
 				this.geometry = new TorusGeometry(10, 3, 30, 130)
 				this.geometry.scale(0.5, 0.5, 0.5)
 				this.zPostion = -2000
@@ -62,7 +63,6 @@ export default class RandomShapeGenerator {
 			case 'Dodecahedron':
 				this.material = new MeshNormalMaterial()
 				this.material.wireframe = true
-
 				this.geometry = new DodecahedronGeometry(3, 0)
 				// this.geometry.scale(0.5, 0.5, 0.5)
 				this.xPostion = 0

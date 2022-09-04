@@ -12,6 +12,7 @@ export default class Raycaster extends EventEmitter {
 		this.controls = this.experience.camera.controls
 		this.world = this.experience.world
 		this.renderer = this.experience.renderer.instance
+
 		this.tile1ToFlip = this.world.tiles.model.children.find(
 			(el) => el.name === '1'
 		)
@@ -141,7 +142,7 @@ export default class Raycaster extends EventEmitter {
 		})
 		document.querySelector('.webgl').addEventListener('dblclick', () => {
 			this.vrGogglesHovered &&
-				setTimeout(async () => {
+				setTimeout(() => {
 					gsap.to(this.controls.object.position, {
 						duration: 4,
 						ease: 'back.inOut(1.4)',
@@ -155,19 +156,27 @@ export default class Raycaster extends EventEmitter {
 
 						gsap.to(this.controls.target, {
 							duration: 20,
-							ease: CustomEase.create(
-								'custom',
-								'M0,0 C0.25,0 0.294,0.023 0.335,0.05 0.428,0.11 0.772,0.244 0.804,0.454 0.827,0.613 0.79,0.795 0.854,0.904 0.881,0.95 0.908,1 1,1 '
-							),
+							ease: 'power2.inOut',
 							z: -4000,
 						})
+						// gsap.fromTo(
+						// 	this.particles.particleMaterial.uniforms.uSize,
+						// 	{
+						// 		duration: 1,
+						// 		ease: 'linear',
+						// 		value: 3,
+						// 	},
+						// 	{
+						// 		duration: 5,
+						// 		ease: 'linear',
+						// 		value: 0,
+						// 	}
+						// )
+
 						gsap.to(this.controls.object.position, {
 							duration: 20,
-							ease: CustomEase.create(
-								'custom',
-								'M0,0 C0.25,0 0.294,0.023 0.335,0.05 0.428,0.11 0.772,0.244 0.804,0.454 0.827,0.613 0.79,0.795 0.854,0.904 0.881,0.95 0.908,1 1,1 '
-							),
-							z: -3990,
+							ease: 'power2.inOut',
+							z: -3980,
 						})
 					}, 5000)
 				}, 250)

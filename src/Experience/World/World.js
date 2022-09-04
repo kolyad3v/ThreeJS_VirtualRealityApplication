@@ -10,6 +10,7 @@ import ClickDrag from './models/ClickDrag.js'
 import Nick from './models/Nick.js'
 import Sam from './models/Sam.js'
 import Tiles from './models/tiles/Tiles.js'
+import CursorAnimations from './CursorAnimations.js'
 
 export default class World {
 	constructor() {
@@ -23,12 +24,14 @@ export default class World {
 		this.resources.on('ready', () => {
 			// Setup
 			// this.box = new Box()
+
 			this.environment = new Environment()
 			this.vrGoggles = new Model()
 			this.tiles = new Tiles()
 			this.raycaster = new Raycaster()
 			this.clickDrag = new ClickDrag()
 			this.doubleClick = new DoubleClick()
+			// this.cursorAnimations = new CursorAnimations()
 		})
 		this.generateContent = () => {
 			if (this.generateReady) {
@@ -49,13 +52,15 @@ export default class World {
 	}
 
 	update() {
-		if (this.particles) this.particles.update()
+		// if (this.particles) this.particles.update()
 
 		this.torus && this.torus.updateY()
 		this.torusKnots && this.torusKnots.updateZ()
 		this.ethShape && this.ethShape.updateZ()
 		this.ethShape && this.ethShape.updateX()
 		this.dodecahedrons && this.dodecahedrons.updateZ()
+
+		this.cursorAnimations && this.cursorAnimations.update()
 
 		if (this.raycaster) {
 			this.raycaster.update()
