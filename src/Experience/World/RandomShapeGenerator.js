@@ -60,11 +60,13 @@ export default class RandomShapeGenerator {
 				break
 
 			case 'Dodecahedron':
-				this.material = new MeshNormalMaterial({})
-				this.geometry = new DodecahedronGeometry(1, 0)
-				this.geometry.scale(0.5, 0.5, 0.5)
-				this.xPostion = -2
-				this.yPostion = 1
+				this.material = new MeshNormalMaterial()
+				this.material.wireframe = true
+
+				this.geometry = new DodecahedronGeometry(3, 0)
+				// this.geometry.scale(0.5, 0.5, 0.5)
+				this.xPostion = 0
+				this.yPostion = 0
 				this.zPostion = -3500
 
 				for (let i = 0; i < numberOfShapes; i++) {
@@ -73,8 +75,9 @@ export default class RandomShapeGenerator {
 				break
 			case 'Octahedron':
 				this.material = new MeshNormalMaterial()
-				this.geometry = new OctahedronGeometry(1, 0)
-				this.geometry.scale(0.5, 0.5, 0.5)
+				this.material.wireframe = true
+				this.geometry = new OctahedronGeometry(3, 0)
+				// this.geometry.scale(0.5, 0.5, 0.5)
 				this.zPostion = -2500
 
 				for (let i = 0; i < numberOfShapes; i++) {
@@ -218,11 +221,14 @@ export default class RandomShapeGenerator {
 		}
 	}
 
-	updateZ() {
-		this.mesh.rotation.z = this.time.elapsed / 2000
+	updateX() {
+		this.mesh.rotation.x = this.time.elapsed / 2000
 	}
 	updateY() {
 		this.mesh.rotation.y = this.time.elapsed / 2000
+	}
+	updateZ() {
+		this.mesh.rotation.z = this.time.elapsed / 2000
 	}
 	update() {
 		this.material.uniforms.uTime.value = this.time.elapsed

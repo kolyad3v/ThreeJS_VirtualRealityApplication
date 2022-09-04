@@ -17,6 +17,7 @@ export default class World {
 		this.resources = this.experience.resources
 		this.count = 0
 		// Wait for resources
+
 		this.resources.on('ready', () => {
 			// Setup
 			// this.box = new Box()
@@ -45,6 +46,9 @@ export default class World {
 
 		this.torus && this.torus.updateY()
 		this.torusKnots && this.torusKnots.updateZ()
+		this.ethShape && this.ethShape.updateZ()
+		this.ethShape && this.ethShape.updateX()
+		this.dodecahedrons && this.dodecahedrons.updateZ()
 
 		if (this.triangle) {
 			this.triangle.updateY()

@@ -59,7 +59,7 @@ export default class Raycaster extends EventEmitter {
 				setTimeout(async () => {
 					gsap.to(this.controls.object.position, {
 						duration: 4,
-						ease: 'power2.inOut',
+						ease: 'back.inOut(1.4)',
 						x: 0.015354003026610627,
 						y: 0.02299479124845972,
 						z: 0.44695427287115613,
@@ -67,18 +67,25 @@ export default class Raycaster extends EventEmitter {
 					setTimeout(() => {
 						this.world.generateContent()
 						this.renderer.setClearColor('#000000')
+
 						gsap.to(this.controls.target, {
 							duration: 20,
-							ease: 'power2.inOut',
+							ease: CustomEase.create(
+								'custom',
+								'M0,0 C0.25,0 0.294,0.023 0.335,0.05 0.428,0.11 0.772,0.244 0.804,0.454 0.827,0.613 0.79,0.795 0.854,0.904 0.881,0.95 0.908,1 1,1 '
+							),
 							z: -4000,
 						})
 						gsap.to(this.controls.object.position, {
 							duration: 20,
-							ease: 'power2.inOut',
+							ease: CustomEase.create(
+								'custom',
+								'M0,0 C0.25,0 0.294,0.023 0.335,0.05 0.428,0.11 0.772,0.244 0.804,0.454 0.827,0.613 0.79,0.795 0.854,0.904 0.881,0.95 0.908,1 1,1 '
+							),
 							z: -3990,
 						})
 					}, 5000)
-				}, 1000)
+				}, 250)
 		})
 	}
 
