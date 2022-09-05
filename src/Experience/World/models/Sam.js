@@ -7,6 +7,7 @@ export default class Model {
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
 		this.resource = this.resources.items.sam
+		this.resourceClick = this.resources.items.clickFlip
 		this.debug = this.experience.debug
 
 		if (this.debug.active) {
@@ -16,17 +17,26 @@ export default class Model {
 		// this.material = new MeshBasicMaterial({})
 
 		this.setModel()
+		this.setModelClick()
 		this.setDebug()
 	}
 
 	setModel() {
 		this.model = this.resource.scene
-
-		this.model.rotation.y = 7
-		this.model.children.scale = new Vector3(0.5, 0.5, 0.5)
-		this.model.position.set(-6.5, 5.3, -4000)
-
+		this.model.rotation.y = 6.2
+		this.model.position.set(1.9, 4.7, -4000)
 		this.scene.add(this.model)
+	}
+
+	setModelClick() {
+		this.modelClick = this.resourceClick.scene
+		this.modelClick.rotation.y = 6.2
+		this.modelClick.scale.x = 0.25
+		this.modelClick.scale.y = 0.25
+		this.modelClick.scale.z = 0.25
+		this.modelClick.position.set(4, 0.6, -3999)
+
+		this.scene.add(this.modelClick)
 	}
 
 	setDebug() {
@@ -36,6 +46,26 @@ export default class Model {
 			this.debugFolder.add(this.model.position, 'y').min(-10).max(10).step(0.1)
 			this.debugFolder
 				.add(this.model.position, 'z')
+				.min(-4030)
+				.max(-3990)
+				.step(0.1)
+			this.debugFolder
+				.add(this.modelClick.rotation, 'y')
+				.min(-10)
+				.max(10)
+				.step(0.1)
+			this.debugFolder
+				.add(this.modelClick.position, 'x')
+				.min(-10)
+				.max(10)
+				.step(0.1)
+			this.debugFolder
+				.add(this.modelClick.position, 'y')
+				.min(-10)
+				.max(10)
+				.step(0.1)
+			this.debugFolder
+				.add(this.modelClick.position, 'z')
 				.min(-4030)
 				.max(-3990)
 				.step(0.1)

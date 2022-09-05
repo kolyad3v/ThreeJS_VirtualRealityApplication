@@ -42,14 +42,14 @@ export default class Camera {
 			this.debugFolder.add(this.controls, 'enablePan')
 			this.debugFolder
 				.add(this.controls, 'maxAzimuthAngle')
-				.min(0)
-				.max(2)
+				.min(-5)
+				.max(5)
 				.step(0.1)
 				.name('maxAzimuthAngle')
 			this.debugFolder
 				.add(this.controls, 'minAzimuthAngle')
-				.min(-2)
-				.max(0)
+				.min(-5)
+				.max()
 				.step(0.1)
 				.name('minAzimuthAngle')
 			this.debugFolder

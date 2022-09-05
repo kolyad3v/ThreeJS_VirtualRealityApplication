@@ -2,7 +2,7 @@ import Experience from '../Experience.js'
 import Environment from './Environment.js'
 import ParticleGenerator from './ParticleGenerator.js'
 import RandomShapeGenerator from './RandomShapeGenerator.js'
-import Text from './Text.js'
+import Covers from './models/Covers.js'
 import Model from './models/Model.js'
 import Raycaster from '../Utils/Raycaster.js'
 import DoubleClick from './models/DoubleClick.js'
@@ -17,6 +17,7 @@ export default class World {
 		this.experience = new Experience()
 		this.scene = this.experience.scene
 		this.resources = this.experience.resources
+		this.controls = this.experience.camera.controls
 		this.count = 0
 		// Wait for resources
 		this.generateReady = true
@@ -28,6 +29,10 @@ export default class World {
 			this.environment = new Environment()
 			this.vrGoggles = new Model()
 			this.tiles = new Tiles()
+			this.nickCover = new Covers(1, { x: -4.5, y: -1.95 })
+			this.samCover = new Covers(2, { x: -0.6, y: -1.95 })
+			this.nick = new Nick()
+
 			this.raycaster = new Raycaster()
 			this.clickDrag = new ClickDrag()
 			this.doubleClick = new DoubleClick()
@@ -42,11 +47,9 @@ export default class World {
 				this.torus = new RandomShapeGenerator('Torus', 1)
 				this.ethShape = new RandomShapeGenerator('Octahedron', 1)
 
-				this.nick = new Nick()
 				this.sam = new Sam()
 
-				// this.nick = new Text('Nick', { x: -2, y: 0, z: -4000 }, 0)
-				// this.sam = new Text('Sam', { x: 2, y: 0, z: -4000 }, 0)
+				this.controls.enableRotate = false
 			}
 		}
 	}

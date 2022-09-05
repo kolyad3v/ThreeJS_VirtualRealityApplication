@@ -44,6 +44,9 @@ export default class Raycaster extends EventEmitter {
 		this.objectsToTestArray = [
 			this.experience.world.vrGoggles.model,
 			this.experience.world.tiles.model,
+			this.experience.world.nickCover.model,
+			this.experience.world.samCover.model,
+			this.experience.world.nick.model,
 		]
 
 		// for use with mouse targeting
@@ -54,6 +57,10 @@ export default class Raycaster extends EventEmitter {
 		this.webglStyle = document.querySelector('.webgl').style
 
 		this.vrGogglesHovered = false
+		this.nickCoverHovered = false
+		this.nickNameHovered = false
+		this.samCoverHovered = false
+
 		this.grabOpen = true
 
 		// create Raycaster
@@ -139,6 +146,25 @@ export default class Raycaster extends EventEmitter {
 					ease: 'back.inOut(1.4)',
 					y: '+=3.141592653589793',
 				})
+			this.nickCoverHovered &&
+				gsap.to(this.controls.object.position, {
+					duration: 2,
+					ease: 'back.inOut(1.4)',
+					x: 1.5526051503062337,
+					y: 1.3466724733504294,
+					z: -3992.833008120075,
+				})
+			if (this.nickNameHovered) {
+				window.open('https://nickgillham.dev'), '_blank'
+			}
+			this.samCoverHovered &&
+				gsap.to(this.controls.object.position, {
+					duration: 2,
+					ease: 'back.inOut(1.4)',
+					x: 1.5526051503062337,
+					y: 1.3466724733504294,
+					z: -3992.833008120075,
+				})
 		})
 		document.querySelector('.webgl').addEventListener('dblclick', () => {
 			this.vrGogglesHovered &&
@@ -159,19 +185,6 @@ export default class Raycaster extends EventEmitter {
 							ease: 'power2.inOut',
 							z: -4000,
 						})
-						// gsap.fromTo(
-						// 	this.particles.particleMaterial.uniforms.uSize,
-						// 	{
-						// 		duration: 1,
-						// 		ease: 'linear',
-						// 		value: 3,
-						// 	},
-						// 	{
-						// 		duration: 5,
-						// 		ease: 'linear',
-						// 		value: 0,
-						// 	}
-						// )
 
 						gsap.to(this.controls.object.position, {
 							duration: 20,
@@ -196,9 +209,19 @@ export default class Raycaster extends EventEmitter {
 	// 			break
 	// 	}
 	// }
+	// 	x
+	// :
+	// 1.5526051503062337
+	// y
+	// :
+	// 1.3466724733504294
+	// z
+	// :
+	// -3992.833008120075
 
 	update() {
 		this.raycaster.setFromCamera(this.mouse, this.camera)
+		// console.log(this.controls.object.position)
 		this.intersectObjects = this.raycaster.intersectObjects(
 			this.objectsToTestArray
 		)
@@ -211,6 +234,18 @@ export default class Raycaster extends EventEmitter {
 				case 'Scene':
 					this.webglStyle.cursor = 'pointer'
 					this.vrGogglesHovered = true
+					break
+				case 'nick':
+					this.webglStyle.cursor = 'zoom-in'
+					this.nickCoverHovered = true
+					break
+				case 'sam':
+					this.webglStyle.cursor = 'zoom-in'
+					this.samCoverHovered = true
+					break
+				case 'nickName':
+					this.webglStyle.cursor = 'pointer'
+					this.nickNameHovered = true
 					break
 				case '1':
 					this.webglStyle.cursor = 'pointer'
@@ -334,6 +369,9 @@ export default class Raycaster extends EventEmitter {
 			this.tile7 = false
 			this.tile8 = false
 			this.tile9 = false
+			this.nickCoverHovered = false
+			this.samCoverHovered = false
+			this.nickNameHovered = false
 
 			this.grabOpen && (this.webglStyle.cursor = 'grab')
 		}
