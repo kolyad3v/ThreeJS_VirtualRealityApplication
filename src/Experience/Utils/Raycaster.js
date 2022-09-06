@@ -12,6 +12,7 @@ export default class Raycaster extends EventEmitter {
 		this.controls = this.experience.camera.controls
 		this.world = this.experience.world
 		this.renderer = this.experience.renderer.instance
+		this.zoomedIn = false
 
 		this.tile1ToFlip = this.world.tiles.model.children.find(
 			(el) => el.name === '1'
@@ -40,6 +41,13 @@ export default class Raycaster extends EventEmitter {
 		this.tile9ToFlip = this.world.tiles.model.children.find(
 			(el) => el.name === '9'
 		)
+
+		this.leftClickNowPan = () => {
+			this.controls.mouseButtons = {
+				LEFT: THREE.MOUSE.PAN,
+				MIDDLE: THREE.MOUSE.DOLLY,
+			}
+		}
 
 		this.objectsToTestArray = [
 			this.experience.world.vrGoggles.model,
@@ -157,7 +165,37 @@ export default class Raycaster extends EventEmitter {
 			if (this.nickNameHovered) {
 				window.open('https://nickgillham.dev'), '_blank'
 			}
-			this.samCoverHovered &&
+		})
+
+		document.querySelector('.webgl').addEventListener('click', () => {
+			if (this.nickCoverHovered && !this.zoomedIn) {
+				gsap.to(this.controls.object.position, {
+					duration: 2,
+					ease: 'back.inOut(1.4)',
+					x: -7.330531967093094,
+					y: 1.0741478758061256,
+					z: -3992.4484005573835,
+				})
+				gsap.to(this.controls.target, {
+					duration: 2,
+					ease: 'power2.inOut',
+					x: -6.5,
+					y: 1,
+					z: -4000,
+				})
+
+				setTimeout(() => {
+					this.zoomedIn = true
+				}, 2000)
+
+				console.log(' zoomed ')
+			}
+		})
+		x: -7.330531967093094
+		y: 1.0741478758061256
+		z: -3992.448400557383
+		document.querySelector('.webgl').addEventListener('click', () => {
+			if (this.samCoverHovered && !this.zoomedIn) {
 				gsap.to(this.controls.object.position, {
 					duration: 2,
 					ease: 'back.inOut(1.4)',
@@ -165,6 +203,43 @@ export default class Raycaster extends EventEmitter {
 					y: 1.3466724733504294,
 					z: -3992.833008120075,
 				})
+				gsap.to(this.controls.target, {
+					duration: 2,
+					ease: 'power2.inOut',
+					x: 1.6,
+					y: 1.1,
+					z: -4000,
+				})
+
+				setTimeout(() => {
+					this.zoomedIn = true
+				}, 2000)
+
+				console.log(' zoomed ')
+			}
+		})
+		document.querySelector('.webgl').addEventListener('click', () => {
+			if (this.zoomedIn) {
+				gsap.to(this.controls.target, {
+					duration: 2,
+					ease: 'power2.inOut',
+					x: 0,
+					y: 0,
+					z: -4000,
+				})
+
+				gsap.to(this.controls.object.position, {
+					duration: 2,
+					ease: 'power2.inOut',
+					x: 0.015354003026610627,
+					y: 0.02299479124845972,
+					z: -3980,
+				})
+				setTimeout(() => {
+					this.zoomedIn = false
+				}, 2000)
+				console.log(' zoomed out ')
+			}
 		})
 		document.querySelector('.webgl').addEventListener('dblclick', () => {
 			this.vrGogglesHovered &&
@@ -213,7 +288,7 @@ export default class Raycaster extends EventEmitter {
 	// :
 	// 1.5526051503062337
 	// y
-	// :
+	// :f
 	// 1.3466724733504294
 	// z
 	// :
@@ -229,7 +304,7 @@ export default class Raycaster extends EventEmitter {
 		// console.log(this.intersectObjects)
 		if (this.intersectObjects.length > 0) {
 			this.objectHit = this.intersectObjects[0].object
-			console.log(this.objectHit.parent.name)
+			// console.log(this.objectHit.parent.name)
 			switch (this.objectHit.parent.name) {
 				case 'Scene':
 					this.webglStyle.cursor = 'pointer'
@@ -238,10 +313,12 @@ export default class Raycaster extends EventEmitter {
 				case 'nick':
 					this.webglStyle.cursor = 'zoom-in'
 					this.nickCoverHovered = true
+					this.leftClickNowPan()
 					break
 				case 'sam':
 					this.webglStyle.cursor = 'zoom-in'
 					this.samCoverHovered = true
+					this.leftClickNowPan()
 					break
 				case 'nickName':
 					this.webglStyle.cursor = 'pointer'

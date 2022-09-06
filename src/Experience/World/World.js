@@ -24,18 +24,18 @@ export default class World {
 
 		this.resources.on('ready', () => {
 			// Setup
-			// this.box = new Box()
 
-			this.environment = new Environment()
+			this.clickDrag = new ClickDrag()
+			this.doubleClick = new DoubleClick()
 			this.vrGoggles = new Model()
 			this.tiles = new Tiles()
 			this.nickCover = new Covers(1, { x: -4.5, y: -1.95 })
 			this.samCover = new Covers(2, { x: -0.6, y: -1.95 })
 			this.nick = new Nick()
+			this.environment = new Environment()
 
 			this.raycaster = new Raycaster()
-			this.clickDrag = new ClickDrag()
-			this.doubleClick = new DoubleClick()
+
 			// this.cursorAnimations = new CursorAnimations()
 		})
 		this.generateContent = () => {

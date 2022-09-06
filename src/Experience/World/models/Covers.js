@@ -27,7 +27,7 @@ export default class Covers {
 		// this.model.traverse((c) => {
 		// 	c.material = this.materialFrame
 		// })
-		this.model.position.set(1, 0, -4000)
+
 		this.model.position.set(this.x, this.y, -4000)
 		this.model.scale.x = 2
 		this.model.scale.y = 2
